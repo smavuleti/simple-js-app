@@ -1,4 +1,3 @@
-var pokemonList = [];
 var pokemonList = [
     {
         name: 'Bulbasaur',
