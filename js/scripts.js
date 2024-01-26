@@ -6,7 +6,7 @@ var pokemonList = [
     },
     {
         name: 'Ivysaur',
-        height: 1,
+        height: 9,
         type: ['grass', 'poison']
     },
     {
@@ -25,5 +25,33 @@ var pokemonList = [
         type: ['fire']
     }
 ]
-//console.log(pokemonList[0].name);
-document.write("First array name is " + pokemonList[0].name + ", height is " + pokemonList[0].height + ", and type is " + pokemonList[0].type);
+// creating a new variable to store the maximum height in pokeman array 
+var maxHeight = 0;
+//for loop to search and find out maximum height in array 
+for (let i = 0; i < pokemonList.length; i++) {
+    //if condition is to compare the each height in array to maxheight
+    if (pokemonList[i].height > maxHeight) {
+        //storing the maximum height in maxHeight 
+        maxHeight = pokemonList[i].height;
+    }
+}
+//for loop to display pokeman list array 
+for (let i = 0; i < pokemonList.length; i++) {
+    console.log(maxHeight);
+    //if condition is to display array with maximum height text
+    if (pokemonList[i].height == maxHeight) {
+        document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ")- Wow that\'s big!<br> <br>");
+    } else {
+        document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ") <br><br>");
+    }
+}
+
+
+
+
+
+
+
+
+
+
