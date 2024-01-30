@@ -25,35 +25,23 @@ var pokemonList = [
         type: ['fire']
     }
 ]
-/*
-// creating a new variable to store the maximum height in pokeman array 
-var maxHeight = 0;
-//for loop to search and find out maximum height in array 
-for (let i = 0; i < pokemonList.length; i++) {
-    //if condition is to compare the each height in array to maxheight
-    if (pokemonList[i].height > maxHeight) {
-        //storing the maximum height in maxHeight 
-        maxHeight = pokemonList[i].height;
-    }
-}
-//for loop to display pokeman list array 
-for (let i = 0; i < pokemonList.length; i++) {
-    console.log(maxHeight);
-    //if condition is to display array with maximum height text
-    if (pokemonList[i].height == maxHeight) {
-        document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ")- Wow that\'s big!<br> <br>");
-    } else {
-        document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ") <br><br>");
-    }
-} */
-
-
 /* For Example: 
 pokemonList.forEach( (item,i,arr) => console.log(i, item, arr));
 */
 
+var maxHeight = 0;
+pokemonList.forEach(function (checkMaxHeight){
+    if (checkMaxHeight.height > maxHeight) {
+        maxHeight = checkMaxHeight.height;
+    }
+});
+
 pokemonList.forEach(function (details){
-    document.write(' Name: ' +details.name+ ' <br> Height: ' + details.height + ' <br> Type: ' +details.type+ ' <br> <br>');
+    if (details.height == maxHeight) {
+        document.write(details.name + " (height: " + details.height + ")- Wow that\'s big!<br> <br>");
+    } else {
+        document.write(details.name + " (height: " + details.height + ") <br><br>");
+    }
 });
 
 
