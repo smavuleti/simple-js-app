@@ -30,8 +30,19 @@ let pokemonRepository = (function () {
     function getAll() {
         return pokemanList;
     }
+    /*
     function add(pokeman) {
-        pokemanList.push(pokeman);
+         //validating typeof parameter 
+        if (typeof pokeman == 'object') {
+            pokemanList.push(pokeman);
+        }
+    }
+    */
+    function add(pokeman) {
+        //validating Object.keys() of the parameter are equal to the specific keys
+        if (typeof pokeman.name == 'string' && typeof pokeman.height == 'number' && typeof pokeman.type == 'object') {
+            pokemanList.push(pokeman);
+        }
     }
     return {
         getAll: getAll,
@@ -67,5 +78,4 @@ pokemonRepository.getAll().forEach(function (details) {
         document.write(details.name + " (height: " + details.height + ") <br><br>");
     }
 });
-
 
