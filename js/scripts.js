@@ -25,6 +25,7 @@ var pokemonList = [
         type: ['fire']
     }
 ]
+/*
 // creating a new variable to store the maximum height in pokeman array 
 var maxHeight = 0;
 //for loop to search and find out maximum height in array 
@@ -44,13 +45,16 @@ for (let i = 0; i < pokemonList.length; i++) {
     } else {
         document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ") <br><br>");
     }
-}
+} */
 
 
+/* For Example: 
+pokemonList.forEach( (item,i,arr) => console.log(i, item, arr));
+*/
 
-
-
-
+pokemonList.forEach(function (details){
+    document.write(' Name: ' +details.name+ ' <br> Height: ' + details.height + ' <br> Type: ' +details.type+ ' <br> <br>');
+});
 
 
 
