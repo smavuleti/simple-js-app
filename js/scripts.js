@@ -1,5 +1,5 @@
 let pokemonRepository = (function () {
-    let pokemanList = [
+    let pokemonList = [
         {
             name: 'Bulbasaur',
             height: 7,
@@ -28,20 +28,20 @@ let pokemonRepository = (function () {
     ]
 
     function getAll() {
-        return pokemanList;
+        return pokemonList;
     }
     /*
-    function add(pokeman) {
+    function add(pokemon) {
          //validating typeof parameter 
-        if (typeof pokeman == 'object') {
-            pokemanList.push(pokeman);
+        if (typeof pokemon == 'object') {
+            pokemonList.push(pokemon);
         }
     }
     */
-    function add(pokeman) {
+    function add(pokemon) {
         //validating Object.keys() of the parameter are equal to the specific keys
-        if (typeof pokeman.name == 'string' && typeof pokeman.height == 'number' && typeof pokeman.type == 'object') {
-            pokemanList.push(pokeman);
+        if (typeof pokemon.name == 'string' && typeof pokemon.height == 'number' && typeof pokemon.type == 'object') {
+            pokemonList.push(pokemon);
         }
     }
     return {
@@ -59,7 +59,7 @@ pokemonRepository.add({
 });
 console.log(pokemonRepository.getAll());
 
-// creating a new variable to store the maximum height in pokeman array 
+// creating a new variable to store the maximum height in pokeoan array 
 var maxHeight = 0;
 //forEach() loop to search and check maximum height in array 
 pokemonRepository.getAll().forEach(function (checkMaxHeight) {
