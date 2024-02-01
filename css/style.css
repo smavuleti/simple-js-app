@@ -1,0 +1,20 @@
+.pokemon-button{
+margin: 20px;
+background-color: #024f32;
+color: white;
+width: 150px;
+height: 50px;
+border-radius: 8px;
+border-color: rgb(2, 79, 50);
+transition-duration: 0.4s;
+font-size: medium;
+}
+
+.pokemon-button:hover{
+    background-color: #04bb78;
+    color: white;
+    border-color: rgb(2, 79, 50);
+    font-size: large;
+    box-shadow: 0 10px 16px 0 rgba(2, 79, 50), 0 6px 20px 0 rgba(2, 79, 50);
+
+}
