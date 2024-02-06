@@ -18,3 +18,7 @@ font-size: medium;
     box-shadow: 0 10px 16px 0 rgba(2, 79, 50), 0 6px 20px 0 rgba(2, 79, 50);
 
 }
+
+.pokemon-list{
+    list-style-type: none;
+}
