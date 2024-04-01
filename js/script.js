@@ -1,8 +1,8 @@
 let pokemonRepository = (function () {
     let pokemonList = [];
     //fetching Pokemon details from API limited to 10 records
-    let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=10";
-    let modalContainer = document.querySelector('#modal-container');
+    let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=30";
+    let modalContainer = document.querySelector(".modal");
 
     function add(pokemon) {
         //condition to check the keys from API to add each pokemon to pokemon list
@@ -19,22 +19,22 @@ let pokemonRepository = (function () {
         return pokemonList;
     }
 
-
-
-
     function addListItem(pokemon) {
         let pokemonList = document.querySelector(".pokemon-list");
         let listItem = document.createElement("li");
+        listItem.classList.add("list-group-item");
+
         let button = document.createElement("button");
         button.innerText = pokemon.name;
-        button.classList.add("pokemon-button");
+        button.classList.add("btn", "btn-info", "btn-lg", "btn-block");
+
+        button.setAttribute("data-target", "#exampleModal");
+        button.setAttribute("data-toggle", "modal");
+
         listItem.appendChild(button);
         pokemonList.appendChild(listItem);
+
         checkButtonEvent(button, pokemon);
-
-        //showModal('Modal title','Modal Text....');
-
-
     }
 
 
@@ -49,7 +49,7 @@ let pokemonRepository = (function () {
                     detailsUrl: item.url
                 };
                 add(pokemon);
-                //console.log(pokemon);
+                // console.log(pokemon);
             });
         }).catch(function (e) {
             console.error(e);
@@ -64,6 +64,7 @@ let pokemonRepository = (function () {
         }).then(function (details) {
             item.imageUrl = details.sprites.front_default;
             item.height = details.height;
+            item.weight = details.weight;
             item.types = details.types;
         }).catch(function (e) {
             console.error(e);
@@ -71,7 +72,7 @@ let pokemonRepository = (function () {
 
     }
     function checkButtonEvent(button, pokemon) {
-        button.addEventListener('click', function (event) {
+        button.addEventListener("click", function (event) {
             console.log(event);
             //alert(pokemon.name + " is clicked!");
             showDetails(pokemon);
@@ -87,63 +88,50 @@ let pokemonRepository = (function () {
     }
 
     function showModal(pokemon) {
+        let modalBody = document.querySelector(".modal-body");
+        let modalHeader = document.querySelector(".modal-header");
+        let closeButtonElement = document.querySelector(".close");
+        let modalTitle = document.querySelector(".modal-title");
 
-        // Clear all existing modal content
-        modalContainer.innerHTML = '';
-        let modal = document.createElement('div');
-        modal.classList.add('modal');
+        modalBody.innerHTML = "";
 
-        // Add the new modal content
-        let closeButtonElement = document.createElement('button');
-        closeButtonElement.classList.add('modal-close');
-        closeButtonElement.innerText = 'Close';
-        //Close action event
-        closeButtonElement.addEventListener('click', hideModal);
+        //image in modal container
+        //let imageElement = $('<img class="modal-img" style=width:50%">');
+        let imageElement = document.createElement("img");
+        imageElement.classList.add("modal-img");
+        imageElement.setAttribute("width", "200");
+        imageElement.setAttribute("height", "200");
+        imageElement.src = pokemon.imageUrl;
 
-        let titleElement = document.createElement('h1');
-        titleElement.classList.add('modal-title');
-        titleElement.innerText = pokemon.name;
+        let nameElement = document.createElement("p");
+        nameElement.innerHTML = "Name: " + pokemon.name;
 
-        let pokemonImage = document.createElement('img');
-        pokemonImage.classList.add('modal-img');
-        pokemonImage.src = pokemon.imageUrl;
-        pokemonImage.alt = pokemon.name;
+        let heightElement = document.createElement("p");
+        heightElement.innerHTML = "Height: " + pokemon.height;
 
-        let contentElement = document.createElement('p');
-        contentElement.classList.add('modal-p');
-        contentElement.innerText = (' Height is: ') + pokemon.height;
+        let weightElement = document.createElement("p");
+        weightElement.innerHTML = "Weight: " + pokemon.weight;
 
-        modal.appendChild(closeButtonElement);
-        modal.appendChild(titleElement);
-        modal.appendChild(contentElement);
-        modal.appendChild(pokemonImage);
-        modalContainer.appendChild(modal);
+        let typesElement = document.createElement('p');
+        let types = [pokemon.types[0].type.name];
+        for (let i = 1; i < pokemon.types.length; i++) {
+            types.push(', ' + pokemon.types[i].type.name);
+        }
+        typesElement.innerHTML = "Types: " + types.join("");
 
-
-        modalContainer.classList.add('is-visible');
+        modalHeader.appendChild(modalTitle);
+        modalHeader.appendChild(closeButtonElement);
+        modalBody.appendChild(imageElement);
+        modalBody.appendChild(nameElement);
+        modalBody.appendChild(heightElement);
+        modalBody.appendChild(weightElement);
+        modalBody.appendChild(typesElement);
     }
 
 
     function hideModal() {
-        modalContainer.classList.remove('is-visible');
+        modalContainer.classList.remove("is-visible");
     }
-
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-            hideModal();
-        }
-    });
-
-
-    modalContainer.addEventListener('click', (e) => {
-        // Since this is also triggered when clicking INSIDE the modal
-        // We only want to close if the user clicks directly on the overlay
-        let target = e.target;
-        if (target === modalContainer) {
-            hideModal();
-        }
-    });
-
 
     return {
         add: add,
