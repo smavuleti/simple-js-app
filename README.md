@@ -7,11 +7,6 @@
 
 This project aims to build a small web application using **HTML**, **CSS**, and **JavaScript**. The application will load data from an external API and allow users to view a list of data items and see detailed information about a selected item.
 
----
-
-## Project Context
-
-This project provides an opportunity to learn programming by completing a fully functional JavaScript web application. While the main focus is on JavaScript, creating an aesthetically pleasing and user-friendly application is essential. The completed app should be a portfolio-ready project showcasing your technical and design skills.
 
 ---
 
